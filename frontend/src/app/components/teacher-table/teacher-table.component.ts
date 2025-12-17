@@ -61,6 +61,10 @@ export class TeacherTableComponent implements OnInit {
   }
 
   search(value) {
+    if (!this.teacherData || !Array.isArray(this.teacherData)) {
+      return;
+    }
+    
     const query = (value || '').toLowerCase().trim();
     if (query.length === 0) {
       this.getTeacherData();
@@ -68,7 +72,7 @@ export class TeacherTableComponent implements OnInit {
     }
 
     const foundItems = this.teacherData.filter((teacher) => {
-      return teacher[0].name.toLowerCase().indexOf(query) > -1;
+      return teacher && teacher[0] && teacher[0].name && teacher[0].name.toLowerCase().indexOf(query) > -1;
     });
 
     this.teacherData = foundItems;

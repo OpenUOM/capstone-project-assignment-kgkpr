@@ -52,6 +52,10 @@ export class StudentTableComponent implements OnInit {
   }
 
   search(value) {
+    if (!this.studentData || !Array.isArray(this.studentData)) {
+      return;
+    }
+    
     const query = (value || '').toLowerCase().trim();
     if (query.length === 0) {
       this.getStudentData();
@@ -59,7 +63,7 @@ export class StudentTableComponent implements OnInit {
     }
 
     const foundItems = this.studentData.filter((student) => {
-      return student[0].name.toLowerCase().indexOf(query) > -1;
+      return student && student[0] && student[0].name && student[0].name.toLowerCase().indexOf(query) > -1;
     });
 
     this.studentData = foundItems;

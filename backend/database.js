@@ -47,7 +47,7 @@ const readTeachers = async () => {
     knex_db
       .raw(sql)
       .then((teachers) => {
-        resolve(teachers);
+        resolve(teachers[0]);
       })
       .catch((error) => {
         reject(error);
@@ -61,7 +61,7 @@ const readTeacherInfo = async (id) => {
     knex_db
       .raw(sql, [id])
       .then((teacher) => {
-        resolve(teacher);
+        resolve(teacher[0]);
       })
       .catch((error) => {
         reject(error);
@@ -119,7 +119,7 @@ const readStudents = async () => {
     knex_db
       .raw(sql)
       .then((students) => {
-        resolve(students);
+        resolve(students[0]);
       })
       .catch((error) => {
         reject(error);
@@ -133,7 +133,7 @@ const readStudentInfo = async (id) => {
     knex_db
       .raw(sql, [id])
       .then((student) => {
-        resolve(student);
+        resolve(student[0]);
       })
       .catch((error) => {
         reject(error);
